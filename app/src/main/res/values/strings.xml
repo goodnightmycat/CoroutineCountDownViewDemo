@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">CoroutineCountDownViewDemo</string>
+    <string name="count_down_text">我是倒计时周期:</string>
+</resources>
