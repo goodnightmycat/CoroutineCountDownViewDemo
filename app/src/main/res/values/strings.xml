@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">CoroutineCountDownViewDemo</string>
     <string name="count_down_text">我是倒计时周期:</string>
-    <string name="click_remind">点击开始倒计时:</string>
+    <string name="click_remind">点击开始倒计时</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.coroutinecountdownviewdemo
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProviders
@@ -17,6 +18,12 @@ class MainActivity : AppCompatActivity() {
         countDownView.setOnClickListener {
             startCountDown()
         }
+        countDownView.setOnLongClickListener {
+            val intent = Intent(this, PageActivity::class.java)
+            startActivity(intent)
+            true
+        }
+
     }
 
     private val viewModel by lazy {
@@ -26,4 +33,5 @@ class MainActivity : AppCompatActivity() {
     private fun startCountDown() {
         countDownView.startCountDown(viewModel.viewModelScope)
     }
+
 }
