@@ -18,7 +18,7 @@ class CountDownView : FrameLayout {
     constructor(context: Context, attributeSet: AttributeSet?) : super(context, attributeSet)
 
     init {
-        val view = LayoutInflater.from(context).inflate(R.layout.view_count_down, null, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.view_count_down, this, false)
         textView = view.findViewById(R.id.textView)
         addView(view)
     }
