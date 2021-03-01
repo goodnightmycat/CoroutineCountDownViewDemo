@@ -1,11 +1,13 @@
 package com.example.coroutinecountdownviewdemo
 
 import android.app.Application
+import android.widget.Toast
 import androidx.paging.DataSource
 import androidx.room.Room
+import java.util.concurrent.TimeUnit
 import kotlin.random.Random
 
-class MyDataSourceFactory(context: Application) : DataSource.Factory<Int, User>() {
+class MyDataSourceFactory(val context: Application) : DataSource.Factory<Int, User>() {
     val database: AppDatabase =
         Room.databaseBuilder(context, AppDatabase::class.java, "database-name").build()
 

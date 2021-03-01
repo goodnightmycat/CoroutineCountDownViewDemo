@@ -5,6 +5,10 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.*
 
 /**
@@ -29,6 +33,14 @@ class CountDownView : FrameLayout {
     }
 
     fun startCountDown(coroutineScope: CoroutineScope? = null) {
+        if (coroutineScope != null) {
+            startInnerCountDown(coroutineScope)
+        } else if (context is AppCompatActivity) {
+            startInnerCountDown((context as? AppCompatActivity)?.lifecycleScope)
+        }
+    }
+
+    private fun startInnerCountDown(coroutineScope: CoroutineScope?) {
         coroutineScope?.launch(Dispatchers.Main) {
             repeat(REPEAT_COUNT) {
                 delay(INTERVAL)
@@ -37,5 +49,6 @@ class CountDownView : FrameLayout {
             }
         }
     }
+
 
 }
