@@ -1,6 +1,7 @@
 package com.example.coroutinecountdownviewdemo
 
 import android.app.Application
+import android.util.Log
 import android.widget.Toast
 import androidx.paging.DataSource
 import androidx.room.Room
@@ -31,6 +32,7 @@ class MyDataSourceFactory(val context: Application) : DataSource.Factory<Int, Us
         }
 
         override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, User>) {
+            Log.d("MyDataSourceFactory", "loadAfter: ${params.key}")
             val list = ArrayList<User>()
             repeat(20) {
                 list.add(
@@ -38,7 +40,7 @@ class MyDataSourceFactory(val context: Application) : DataSource.Factory<Int, Us
                         .getUserById(Random(it).nextInt(0, FakeData.getData().size - 1))
                 )
             }
-            callback.onResult(list, 1)
+            callback.onResult(list, params.key)
         }
 
         override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, User>) {

@@ -2,6 +2,7 @@ package com.example.coroutinecountdownviewdemo
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import android.widget.TextView
@@ -42,10 +43,16 @@ class CountDownView : FrameLayout {
 
     private fun startInnerCountDown(coroutineScope: CoroutineScope?) {
         coroutineScope?.launch(Dispatchers.Main) {
+            withTimeoutOrNull(5000) {
+                repeat(10) {
+                    Log.d("CountDownView", "startInnerCountDown: ${it + 1}")
+                    delay(INTERVAL)
+                }
+            }
             repeat(REPEAT_COUNT) {
-                delay(INTERVAL)
-                val textString = "${context.getString(R.string.count_down_text)}${it}"
+                val textString = "${context.getString(R.string.count_down_text)}${it + 1}"
                 textView.text = textString
+                delay(INTERVAL)
             }
         }
     }
